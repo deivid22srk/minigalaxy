@@ -6,6 +6,7 @@ import android.util.Log;
 import com.minigalaxy.android.config.Config;
 import com.minigalaxy.android.config.Constants;
 import com.minigalaxy.android.model.Download;
+import com.minigalaxy.android.model.Game;
 
 import java.io.File;
 import java.io.FileOutputStream;

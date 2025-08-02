@@ -39,6 +39,7 @@ public class Game {
     public enum DownloadState {
         NOT_DOWNLOADED,
         DOWNLOADING,
+        PAUSED,
         DOWNLOADED,
         INSTALLED,
         ERROR

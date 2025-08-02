@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements
     }
     
     private void initializeComponents() {
-        config = new Config(this);
+        config = Config.getInstance(this);
         authManager = new AuthenticationManager(this, config);
-        gameRepository = new GameRepository(this, config);
-        downloadManager = new DownloadManager(this, config);
+        gameRepository = GameRepository.getInstance(this);
+        downloadManager = DownloadManager.getInstance(this);
         
         gameRepository.addListener(this);
         downloadManager.addListener(this);

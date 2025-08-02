@@ -221,6 +221,10 @@ public class Download {
     public String getFormattedDownloadedSize() {
         return formatFileSize(downloadedSize);
     }
+
+    public String getFormattedSpeed() {
+        return getFormattedDownloadSpeed();
+    }
     
     public String getFormattedDownloadSpeed() {
         return formatFileSize((long) downloadSpeed) + "/s";

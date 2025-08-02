@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
     
     private void initializeComponents() {
-        config = new Config(this);
+        config = Config.getInstance(this);
         authManager = new AuthenticationManager(this, config);
     }
     
