@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.minigalaxy.android.R;
 import com.minigalaxy.android.model.DLC;
+import com.minigalaxy.android.model.Game;
 
 import java.util.ArrayList;
 import java.util.List;
