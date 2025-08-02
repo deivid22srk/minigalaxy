@@ -33,11 +33,19 @@ public class GameRepository {
     
     // Listeners
     private final List<GameRepositoryListener> listeners = new ArrayList<>();
+    private static GameRepository instance;
     
-    public GameRepository(Context context, Config config) {
-        this.config = config;
+    private GameRepository(Context context) {
+        this.config = Config.getInstance(context);
         this.gogApi = new GogApi(config);
         this.executorService = Executors.newFixedThreadPool(3);
+    }
+
+    public static synchronized GameRepository getInstance(Context context) {
+        if (instance == null) {
+            instance = new GameRepository(context.getApplicationContext());
+        }
+        return instance;
     }
     
     /**
@@ -81,6 +89,28 @@ public class GameRepository {
             } catch (Exception e) {
                 Log.e(TAG, "Error syncing games", e);
                 notifyError("Failed to sync games: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Get download links for a game
+     */
+    public void getDownloadLinks(long gameId, DownloadLinksCallback callback) {
+        executorService.execute(() -> {
+            try {
+                // This is a placeholder implementation
+                // In a real app, this would make an API call to get the download links
+                Game game = getGameById(gameId);
+                if (game != null) {
+                    // Simulate a successful response with the game's existing URL
+                    callback.onSuccess(game);
+                } else {
+                    callback.onError("Game not found");
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error getting download links", e);
+                callback.onError("Failed to get download links: " + e.getMessage());
             }
         });
     }
@@ -305,5 +335,10 @@ public class GameRepository {
     
     public interface ApiAvailabilityCallback {
         void onResult(boolean available);
+    }
+
+    public interface DownloadLinksCallback {
+        void onSuccess(Game game);
+        void onError(String errorMessage);
     }
 }

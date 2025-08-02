@@ -94,7 +94,7 @@ public class NotificationManager {
             .setPriority(NotificationCompat.PRIORITY_LOW);
         
         // Add pause/resume action
-        if (download.getStatus() == Download.Status.DOWNLOADING) {
+        if (download.getStatus() == Download.DownloadStatus.DOWNLOADING) {
             Intent pauseIntent = new Intent(context, DownloadActionReceiver.class);
             pauseIntent.setAction(DownloadActionReceiver.ACTION_PAUSE);
             pauseIntent.putExtra(DownloadActionReceiver.EXTRA_DOWNLOAD_ID, download.getId());

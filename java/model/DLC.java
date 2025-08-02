@@ -19,7 +19,7 @@ public class DLC {
     private int downloadProgress;
     
     public DLC() {
-        this.downloadState = Game.DownloadState.NONE;
+        this.downloadState = Game.DownloadState.NOT_DOWNLOADED;
         this.downloadProgress = 0;
     }
     
@@ -130,6 +130,10 @@ public class DLC {
     }
     
     // Utility methods
+    public String getFormattedSize() {
+        return formatFileSize(fileSize);
+    }
+
     public String getFormattedFileSize() {
         return formatFileSize(fileSize);
     }

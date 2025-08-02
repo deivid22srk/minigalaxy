@@ -119,7 +119,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
         public void bind(Download download) {
             // Set basic info
             textViewGameName.setText(download.getGameName());
-            textViewFileName.setText(download.getFileName());
+	textViewFileName.setText(download.getFilename());
             
             // Load game icon
             if (download.getGameImageUrl() != null && !download.getGameImageUrl().isEmpty()) {
@@ -173,23 +173,23 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
         }
         
         private void updateProgress(Download download) {
-            boolean showProgress = download.getStatus() == Download.Status.DOWNLOADING ||
-                                 download.getStatus() == Download.Status.PAUSED;
+            boolean showProgress = download.getStatus() == Download.DownloadStatus.DOWNLOADING ||
+                                 download.getStatus() == Download.DownloadStatus.PAUSED;
             
             progressBar.setVisibility(showProgress ? View.VISIBLE : View.GONE);
             textViewProgress.setVisibility(showProgress ? View.VISIBLE : View.GONE);
-            textViewSpeed.setVisibility(download.getStatus() == Download.Status.DOWNLOADING ? 
+            textViewSpeed.setVisibility(download.getStatus() == Download.DownloadStatus.DOWNLOADING ?
                 View.VISIBLE : View.GONE);
             
             if (showProgress) {
                 progressBar.setProgress((int) download.getProgress());
                 textViewProgress.setText(String.format("%.1f%% (%s/%s)", 
                     download.getProgress(),
-                    download.getFormattedDownloaded(),
+	download.getFormattedDownloadedSize(),
                     download.getFormattedTotalSize()));
             }
             
-            if (download.getStatus() == Download.Status.DOWNLOADING) {
+            if (download.getStatus() == Download.DownloadStatus.DOWNLOADING) {
                 textViewSpeed.setText(download.getFormattedSpeed());
             }
         }

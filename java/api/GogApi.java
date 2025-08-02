@@ -275,12 +275,17 @@ public class GogApi {
         if (System.currentTimeMillis() >= (activeTokenExpirationTime - 300000)) {
             String refreshToken = config.getRefreshToken();
             if (refreshToken != null && !refreshToken.isEmpty()) {
-                ApiResponse<AuthResult> refreshResponse = refreshToken(refreshToken);
-                if (refreshResponse.isSuccess()) {
-                    AuthResult result = refreshResponse.getData();
-                    config.setRefreshToken(result.getRefreshToken());
-                    return true;
-                } else {
+                try {
+                    ApiResponse<AuthResult> refreshResponse = refreshToken(refreshToken);
+                    if (refreshResponse.isSuccess()) {
+                        AuthResult result = refreshResponse.getData();
+                        config.setRefreshToken(result.getRefreshToken());
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed to refresh token", e);
                     return false;
                 }
             } else {

@@ -51,7 +51,7 @@ public class DLCAdapter extends RecyclerView.Adapter<DLCAdapter.DLCViewHolder> {
     
     public void updateDLC(DLC updatedDLC) {
         for (int i = 0; i < dlcList.size(); i++) {
-            if (dlcList.get(i).getId().equals(updatedDLC.getId())) {
+            if (dlcList.get(i).getId() == updatedDLC.getId()) {
                 dlcList.set(i, updatedDLC);
                 notifyItemChanged(i);
                 break;

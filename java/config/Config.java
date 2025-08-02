@@ -33,6 +33,10 @@ public class Config {
     private static final String KEY_USE_SYSTEM_SCUMMVM = "use_system_scummvm";
     private static final String KEY_CREATE_SHORTCUTS = "create_shortcuts";
     private static final String KEY_SHOW_WINE_PREFIX = "show_wine_prefix";
+    private static final String KEY_DOWNLOAD_NOTIFICATIONS = "download_notifications";
+    private static final String KEY_UPDATE_NOTIFICATIONS = "update_notifications";
+    private static final String KEY_AUTO_DOWNLOAD_UPDATES = "auto_download_updates";
+    private static final String KEY_DOWNLOAD_SPEED_LIMIT = "download_speed_limit";
     
     // Default values
     private static final String DEFAULT_LOCALE = "";
@@ -50,13 +54,25 @@ public class Config {
     private static final boolean DEFAULT_USE_SYSTEM_SCUMMVM = false;
     private static final boolean DEFAULT_CREATE_SHORTCUTS = true;
     private static final boolean DEFAULT_SHOW_WINE_PREFIX = false;
+    private static final boolean DEFAULT_DOWNLOAD_NOTIFICATIONS = true;
+    private static final boolean DEFAULT_UPDATE_NOTIFICATIONS = true;
+    private static final boolean DEFAULT_AUTO_DOWNLOAD_UPDATES = false;
+    private static final int DEFAULT_DOWNLOAD_SPEED_LIMIT = 0; // 0 for unlimited
     
+    private static Config instance;
     private final SharedPreferences prefs;
     private final Context context;
     
-    public Config(Context context) {
+    private Config(Context context) {
         this.context = context.getApplicationContext();
         this.prefs = this.context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+    }
+
+    public static synchronized Config getInstance(Context context) {
+        if (instance == null) {
+            instance = new Config(context);
+        }
+        return instance;
     }
     
     // Locale
@@ -225,6 +241,42 @@ public class Config {
     
     public void setShowWinePrefix(boolean showWinePrefix) {
         prefs.edit().putBoolean(KEY_SHOW_WINE_PREFIX, showWinePrefix).apply();
+    }
+
+    // Download Notifications
+    public boolean getDownloadNotifications() {
+        return prefs.getBoolean(KEY_DOWNLOAD_NOTIFICATIONS, DEFAULT_DOWNLOAD_NOTIFICATIONS);
+    }
+
+    public void setDownloadNotifications(boolean enabled) {
+        prefs.edit().putBoolean(KEY_DOWNLOAD_NOTIFICATIONS, enabled).apply();
+    }
+
+    // Update Notifications
+    public boolean getUpdateNotifications() {
+        return prefs.getBoolean(KEY_UPDATE_NOTIFICATIONS, DEFAULT_UPDATE_NOTIFICATIONS);
+    }
+
+    public void setUpdateNotifications(boolean enabled) {
+        prefs.edit().putBoolean(KEY_UPDATE_NOTIFICATIONS, enabled).apply();
+    }
+
+    // Auto Download Updates
+    public boolean getAutoDownloadUpdates() {
+        return prefs.getBoolean(KEY_AUTO_DOWNLOAD_UPDATES, DEFAULT_AUTO_DOWNLOAD_UPDATES);
+    }
+
+    public void setAutoDownloadUpdates(boolean enabled) {
+        prefs.edit().putBoolean(KEY_AUTO_DOWNLOAD_UPDATES, enabled).apply();
+    }
+
+    // Download Speed Limit
+    public int getDownloadSpeedLimit() {
+        return prefs.getInt(KEY_DOWNLOAD_SPEED_LIMIT, DEFAULT_DOWNLOAD_SPEED_LIMIT);
+    }
+
+    public void setDownloadSpeedLimit(int limitInKb) {
+        prefs.edit().putInt(KEY_DOWNLOAD_SPEED_LIMIT, limitInKb).apply();
     }
     
     // Utility methods

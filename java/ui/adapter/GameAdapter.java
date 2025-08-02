@@ -71,7 +71,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     
     public void updateGame(Game updatedGame) {
         for (int i = 0; i < filteredGames.size(); i++) {
-            if (filteredGames.get(i).getId().equals(updatedGame.getId())) {
+            if (filteredGames.get(i).getId() == updatedGame.getId()) {
                 filteredGames.set(i, updatedGame);
                 notifyItemChanged(i);
                 break;
@@ -79,7 +79,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         }
         
         for (int i = 0; i < games.size(); i++) {
-            if (games.get(i).getId().equals(updatedGame.getId())) {
+            if (games.get(i).getId() == updatedGame.getId()) {
                 games.set(i, updatedGame);
                 break;
             }

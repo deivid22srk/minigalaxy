@@ -38,10 +38,11 @@ public class DownloadManager {
     private final PriorityBlockingQueue<QueuedDownload> downloadQueue;
     private final Map<String, Download> activeDownloads;
     private final List<DownloadManagerListener> listeners;
+    private static DownloadManager instance;
     
-    public DownloadManager(Context context, Config config) {
+    private DownloadManager(Context context) {
         this.context = context;
-        this.config = config;
+        this.config = Config.getInstance(context);
         this.httpClient = new OkHttpClient.Builder().build();
         
         int threadCount = config.getConcurrentDownloads();
@@ -52,6 +53,13 @@ public class DownloadManager {
         this.listeners = new ArrayList<>();
         
         startQueueProcessor();
+    }
+
+    public static synchronized DownloadManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new DownloadManager(context.getApplicationContext());
+        }
+        return instance;
     }
     
     public void addDownload(Download download) {
@@ -69,12 +77,51 @@ public class DownloadManager {
         notifyDownloadAdded(download);
         processQueue();
     }
+
+    public void addDownload(Game game) {
+        if (game == null) return;
+
+        String url = game.getUrl(); // Assuming Game has a getUrl() for the download
+        if (url == null || url.isEmpty()) return;
+
+        String fileName = game.getName() + ".exe"; // Or a more appropriate extension
+        String destPath = new File(config.getInstallDir(), fileName).getAbsolutePath();
+
+        Download download = new Download(
+            String.valueOf(game.getId()),
+            url,
+            fileName,
+            destPath,
+            game.getFileSize(),
+            Download.DownloadType.GAME
+        );
+        download.setRelatedGame(game);
+        addDownload(download);
+    }
     
     public void pauseDownload(String downloadId) {
         Download download = activeDownloads.get(downloadId);
         if (download != null && download.canPause()) {
             download.setStatus(Download.DownloadStatus.PAUSED);
             notifyDownloadUpdated(download);
+        }
+    }
+
+    public void retryDownload(String downloadId) {
+        Download failedDownload = getDownloadById(downloadId);
+        if (failedDownload != null && failedDownload.isFailed()) {
+            // Create a new download object to avoid issues with the old one
+            Download newDownload = new Download(
+                failedDownload.getId(),
+                failedDownload.getUrl(),
+                failedDownload.getFilename(),
+                failedDownload.getDestinationPath(),
+                failedDownload.getTotalSize(),
+                failedDownload.getType()
+            );
+            newDownload.setRelatedGame(failedDownload.getRelatedGame());
+            newDownload.setRelatedDLC(failedDownload.getRelatedDLC());
+            addDownload(newDownload);
         }
     }
     
@@ -115,6 +162,23 @@ public class DownloadManager {
             }
         }
         
+        return null;
+    }
+
+    public Download getDownloadForGame(long gameId) {
+        // Check active downloads first
+        for (Download download : activeDownloads.values()) {
+            if (download.getRelatedGame() != null && download.getRelatedGame().getId() == gameId) {
+                return download;
+            }
+        }
+        // Then check queued downloads
+        for (QueuedDownload queuedDownload : downloadQueue) {
+            Download download = queuedDownload.download;
+            if (download.getRelatedGame() != null && download.getRelatedGame().getId() == gameId) {
+                return download;
+            }
+        }
         return null;
     }
     

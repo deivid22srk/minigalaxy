@@ -195,6 +195,18 @@ public class Download {
     public void setRemainingTime(long remainingTime) {
         this.remainingTime = remainingTime;
     }
+
+    public String getGameName() {
+        return relatedGame != null ? relatedGame.getName() : "Unknown Game";
+    }
+
+    public float getProgress() {
+        return getProgressPercentage();
+    }
+
+    public String getGameImageUrl() {
+        return relatedGame != null ? relatedGame.getImageUrl() : null;
+    }
     
     // Utility methods
     public int getProgressPercentage() {

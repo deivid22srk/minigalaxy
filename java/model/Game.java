@@ -21,6 +21,10 @@ public class Game {
     private String category;
     private String description;
     private String version;
+    private String developer;
+    private String genre;
+    private String publisher;
+    private String releaseDate;
     private long fileSize;
     private long installedSize;
     private String language;
@@ -33,14 +37,11 @@ public class Game {
     
     // Download states
     public enum DownloadState {
-        NONE,
-        QUEUED,
+        NOT_DOWNLOADED,
         DOWNLOADING,
-        PAUSED,
-        COMPLETED,
-        FAILED,
-        CANCELLED,
-        INSTALLING
+        DOWNLOADED,
+        INSTALLED,
+        ERROR
     }
     
     private DownloadState downloadState;
@@ -48,7 +49,7 @@ public class Game {
     public Game() {
         this.md5sum = new HashMap<>();
         this.dlcs = new ArrayList<>();
-        this.downloadState = DownloadState.NONE;
+        this.downloadState = DownloadState.NOT_DOWNLOADED;
         this.downloadProgress = 0;
     }
     
@@ -139,7 +140,43 @@ public class Game {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
     
+    public String getFormattedSize() {
+        return formatFileSize(fileSize);
+    }
+
     public String getDescription() {
         return description;
     }

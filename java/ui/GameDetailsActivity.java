@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.minigalaxy.android.R;
-import com.minigalaxy.android.api.GameRepository;
+import com.minigalaxy.android.repository.GameRepository;
 import com.minigalaxy.android.download.DownloadManager;
 import com.minigalaxy.android.model.Download;
 import com.minigalaxy.android.model.Game;
@@ -97,7 +97,8 @@ public class GameDetailsActivity extends AppCompatActivity {
         downloadManager = DownloadManager.getInstance(this);
     }
     
-    private void loadGameDetails(String gameId) {
+    private void loadGameDetails(String gameIdStr) {
+        long gameId = Long.parseLong(gameIdStr);
         executorService.execute(() -> {
             currentGame = gameRepository.getGameById(gameId);
             if (currentGame != null) {
@@ -254,25 +255,34 @@ public class GameDetailsActivity extends AppCompatActivity {
     
     private void pauseDownload() {
         if (currentGame != null) {
-            downloadManager.pauseDownload(currentGame.getId());
-            currentGame.setDownloadState(Game.DownloadState.PAUSED);
-            updateActionButton();
+            Download download = downloadManager.getDownloadForGame(currentGame.getId());
+            if (download != null) {
+                downloadManager.pauseDownload(download.getId());
+                currentGame.setDownloadState(Game.DownloadState.PAUSED);
+                updateActionButton();
+            }
         }
     }
     
     private void resumeDownload() {
         if (currentGame != null) {
-            downloadManager.resumeDownload(currentGame.getId());
-            currentGame.setDownloadState(Game.DownloadState.DOWNLOADING);
-            updateActionButton();
+            Download download = downloadManager.getDownloadForGame(currentGame.getId());
+            if (download != null) {
+                downloadManager.resumeDownload(download.getId());
+                currentGame.setDownloadState(Game.DownloadState.DOWNLOADING);
+                updateActionButton();
+            }
         }
     }
     
     private void retryDownload() {
         if (currentGame != null) {
-            downloadManager.retryDownload(currentGame.getId());
-            currentGame.setDownloadState(Game.DownloadState.DOWNLOADING);
-            updateActionButton();
+            Download download = downloadManager.getDownloadForGame(currentGame.getId());
+            if (download != null) {
+                downloadManager.retryDownload(download.getId());
+                currentGame.setDownloadState(Game.DownloadState.DOWNLOADING);
+                updateActionButton();
+            }
         }
     }
     
