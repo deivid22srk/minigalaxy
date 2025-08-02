@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme -->
-    <style name="Theme.Minigalaxy" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.Minigalaxy" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/gog_purple</item>
         <item name="colorPrimaryDark">@color/gog_purple_dark</item>
         <item name="colorAccent">@color/teal_200</item>
