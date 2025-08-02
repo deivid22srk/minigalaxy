@@ -160,7 +160,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
                     textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.green));
                     break;
                     
-                case ERROR:
+                case FAILED:
                     textViewStatus.setText("Erro");
                     textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
                     break;
@@ -232,7 +232,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
                     });
                     break;
                     
-                case ERROR:
+                case FAILED:
                     buttonPauseResume.setImageResource(R.drawable.ic_refresh);
                     buttonPauseResume.setImageTintList(ColorStateList.valueOf(
                         ContextCompat.getColor(context, R.color.gog_purple)));

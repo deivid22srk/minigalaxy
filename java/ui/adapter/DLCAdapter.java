@@ -187,7 +187,7 @@ public class DLCAdapter extends RecyclerView.Adapter<DLCAdapter.DLCViewHolder> {
         }
         
         private void updateProgress(DLC dlc) {
-            boolean showProgress = dlc.getDownloadState() == DLC.DownloadState.DOWNLOADING;
+            boolean showProgress = dlc.getDownloadState() == Game.DownloadState.DOWNLOADING;
             
             progressBarDLC.setVisibility(showProgress ? View.VISIBLE : View.GONE);
             
