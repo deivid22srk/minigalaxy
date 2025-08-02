@@ -44,6 +44,10 @@
     
     <!-- Toolbar -->
     <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="app_bar_height">56dp</dimen>
+
+    <!-- Button dimensions -->
+    <dimen name="text_size_button">14sp</dimen>
     
     <!-- Bottom sheet -->
     <dimen name="bottom_sheet_peek_height">64dp</dimen>
