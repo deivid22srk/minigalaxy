@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Network permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Storage permissions -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    
+    <!-- For Android 13+ (API 33+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    
+    <!-- For managing all files (Android 11+) -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    
+    <!-- Notification permissions (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    
+    <!-- Wake lock for long downloads -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- Install packages (for downloaded games) -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.Minigalaxy"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Minigalaxy.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Login Activity -->
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Minigalaxy.NoActionBar"
+            android:screenOrientation="portrait" />
+        
+        <!-- Game Details Activity -->
+        <activity
+            android:name=".ui.GameDetailsActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+        
+        <!-- Preferences Activity -->
+        <activity
+            android:name=".ui.PreferencesActivity"
+            android:exported="false"
+            android:label="@string/preferences_title"
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+        
+        <!-- About Activity -->
+        <activity
+            android:name=".ui.AboutActivity"
+            android:exported="false"
+            android:label="@string/about_title"
+            android:parentActivityName=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+            
+        <!-- Permission Activity -->
+        <activity
+            android:name=".ui.PermissionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Minigalaxy.NoActionBar"
+            android:screenOrientation="portrait" />
+        
+        <!-- Download Service -->
+        <service
+            android:name=".service.DownloadService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+            
+        <!-- Download Action Receiver -->
+        <receiver
+            android:name=".notification.DownloadActionReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        
+        <!-- File provider for sharing files -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        
+    </application>
+</manifest>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:translateX="10.8"
+        android:translateY="10.8">
+
+        <!-- Background circle -->
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M54,8C26.4,8 4,30.4 4,58s22.4,50 50,50s50,-22.4 50,-50S81.6,8 54,8z" />
+
+        <!-- White border circle -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M54,4C24.2,4 0,28.2 0,58s24.2,54 54,54s54,-24.2 54,-54S83.8,4 54,4z M54,8C81.6,8 104,30.4 104,58S81.6,108 54,108S4,85.6 4,58S26.4,8 54,8z" />
+
+        <!-- Game controller body -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,35 L78,35 C80,35 82,37 82,39 L82,77 C82,79 80,81 78,81 L30,81 C28,81 26,79 26,77 L26,39 C26,37 28,35 30,35z" />
+
+        <!-- Controller details -->
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M32,45 L36,45 L36,49 L32,49z" />
+        
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M72,45 L76,45 L76,49 L72,49z" />
+
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M32,65 L36,65 L36,69 L32,69z" />
+        
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M72,65 L76,65 L76,69 L72,69z" />
+
+        <!-- D-pad -->
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M42,55 L46,55 L46,53 L48,53 L48,55 L52,55 L52,57 L48,57 L48,59 L46,59 L46,57 L42,57z" />
+
+        <!-- Action buttons -->
+        <path
+            android:fillColor="#8B5FC7"
+            android:pathData="M56,55 L60,55 L60,53 L62,53 L62,55 L66,55 L66,57 L62,57 L62,59 L60,59 L60,57 L56,57z" />
+
+    </group>
+
+</vector>

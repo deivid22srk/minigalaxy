@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Language arrays -->
+    <string-array name="language_entries">
+        <item>@string/lang_system_default</item>
+        <item>@string/lang_english</item>
+        <item>@string/lang_portuguese_br</item>
+        <item>@string/lang_spanish</item>
+        <item>@string/lang_french</item>
+        <item>@string/lang_german</item>
+        <item>@string/lang_italian</item>
+        <item>@string/lang_russian</item>
+        <item>@string/lang_polish</item>
+        <item>@string/lang_czech</item>
+        <item>@string/lang_chinese_simplified</item>
+        <item>@string/lang_chinese_traditional</item>
+        <item>@string/lang_japanese</item>
+        <item>@string/lang_korean</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>system</item>
+        <item>en</item>
+        <item>pt-BR</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>it</item>
+        <item>ru</item>
+        <item>pl</item>
+        <item>cs</item>
+        <item>zh-CN</item>
+        <item>zh-TW</item>
+        <item>ja</item>
+        <item>ko</item>
+    </string-array>
+
+    <!-- View type arrays -->
+    <string-array name="view_type_entries">
+        <item>Grid View</item>
+        <item>List View</item>
+    </string-array>
+
+    <string-array name="view_type_values">
+        <item>grid</item>
+        <item>list</item>
+    </string-array>
+
+    <!-- Concurrent downloads arrays -->
+    <string-array name="concurrent_downloads_entries">
+        <item>1 Download</item>
+        <item>2 Downloads</item>
+        <item>3 Downloads</item>
+        <item>4 Downloads</item>
+        <item>5 Downloads</item>
+    </string-array>
+
+    <string-array name="concurrent_downloads_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <!-- Platform arrays -->
+    <string-array name="platform_entries">
+        <item>@string/platform_linux</item>
+        <item>@string/platform_windows</item>
+        <item>@string/platform_mac</item>
+    </string-array>
+
+    <string-array name="platform_values">
+        <item>linux</item>
+        <item>windows</item>
+        <item>mac</item>
+    </string-array>
+
+    <!-- Category arrays -->
+    <string-array name="category_entries">
+        <item>All Categories</item>
+        <item>@string/category_action</item>
+        <item>@string/category_adventure</item>
+        <item>@string/category_puzzle</item>
+        <item>@string/category_racing</item>
+        <item>@string/category_rpg</item>
+        <item>@string/category_shooter</item>
+        <item>@string/category_simulation</item>
+        <item>@string/category_strategy</item>
+        <item>@string/category_other</item>
+    </string-array>
+
+    <string-array name="category_values">
+        <item>all</item>
+        <item>action</item>
+        <item>adventure</item>
+        <item>puzzle</item>
+        <item>racing</item>
+        <item>rpg</item>
+        <item>shooter</item>
+        <item>simulation</item>
+        <item>strategy</item>
+        <item>other</item>
+    </string-array>
+</resources>

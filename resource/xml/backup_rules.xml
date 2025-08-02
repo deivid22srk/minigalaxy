@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Include user preferences -->
+    <include domain="sharedpref" path="." />
+    <!-- Exclude large game files and downloads -->
+    <exclude domain="external" path="." />
+    <exclude domain="file" path="downloads/" />
+    <exclude domain="file" path="games/" />
+</full-backup-content>

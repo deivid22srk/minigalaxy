@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_uninstall"
+        android:title="@string/uninstall"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_remove_from_library"
+        android:title="@string/remove_from_library"
+        android:icon="@drawable/ic_remove"
+        app:showAsAction="never" />
+
+</menu>

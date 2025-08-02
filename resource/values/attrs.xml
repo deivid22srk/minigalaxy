@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom attributes for the app -->
+    <declare-styleable name="GameCard">
+        <attr name="cardElevation" format="dimension" />
+        <attr name="cardCornerRadius" format="dimension" />
+    </declare-styleable>
+    
+    <declare-styleable name="ProgressIndicator">
+        <attr name="progressColor" format="color" />
+        <attr name="trackColor" format="color" />
+    </declare-styleable>
+</resources>
