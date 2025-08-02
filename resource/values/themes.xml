@@ -18,6 +18,9 @@
         <item name="android:windowBackground">@color/gog_purple</item>
     </style>
     
+    <!-- Popup Overlay -->
+    <style name="Theme.MiniGalaxy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <!-- Button styles -->
     <style name="PrimaryButton">
         <item name="android:background">@color/gog_purple</item>
